@@ -3,11 +3,35 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #3b82f6;
+  --primary-foreground: #ffffff;
+  --secondary: #f1f5f9;
+  --secondary-foreground: #0f172a;
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --input: #ffffff;
+  --ring: #3b82f6;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,11 +40,2097 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --primary: #3b82f6;
+    --primary-foreground: #ffffff;
+    --secondary: #1e293b;
+    --secondary-foreground: #f1f5f9;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --border: #334155;
+    --input: #1e293b;
+    --ring: #3b82f6;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --error: #ef4444;
   }
+  
+  .card {
+    background: #1e293b;
+    border-color: var(--border);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-header,
+  .card-footer {
+    background: #334155;
+  }
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* 반응형 기본 설정 */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 2.5rem;
+  }
+}
+
+/* 기본 레이아웃 구조 */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+}
+
+.app-header {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+}
+
+.app-main {
+  flex: 1;
+  padding: 2rem 0;
+}
+
+.app-footer {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--border);
+  background: var(--muted);
+  margin-top: auto;
+}
+
+/* 카드 스타일 */
+.card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--muted);
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: var(--muted);
+}
+
+/* 반응형 텍스트 크기 */
+.text-responsive-xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-responsive-lg {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-responsive-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-responsive-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .text-responsive-xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .text-responsive-xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+  }
+}
+
+/* 진행률 바 기본 스타일 */
+.progress-container {
+  width: 100%;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: var(--muted);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 진행률 바 크기 변형 */
+.progress-bar-small {
+  height: 6px;
+  border-radius: 3px;
+}
+
+.progress-bar-medium {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.progress-bar-large {
+  height: 12px;
+  border-radius: 6px;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 진행률에 따른 색상 변경 */
+.progress-fill.low {
+  background-color: var(--error);
+}
+
+.progress-fill.medium {
+  background-color: var(--warning);
+}
+
+.progress-fill.high {
+  background-color: var(--success);
+}
+
+/* 진행률 바 애니메이션 효과 */
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* 진행률 텍스트 스타일 */
+.progress-text {
+  margin-top: 0.5rem;
+  text-align: right;
+}
+
+/* 호버 효과 (데스크톱에서만) */
+@media (min-width: 768px) {
+  .progress-container:hover .progress-fill {
+    filter: brightness(1.1);
+  }
+}
+
+/* 테이블 반응형 스타일 */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  .table-responsive table {
+    min-width: 600px;
+  }
+}
+
+/* 반응형 간격 조정 */
+.space-y-2 > * + * {
+  margin-top: 0.5rem;
+}
+
+.space-y-3 > * + * {
+  margin-top: 0.75rem;
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
+/* 반응형 간격 조정 - 모바일 */
+@media (max-width: 640px) {
+  .space-y-4 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  .space-y-3 > * + * {
+    margin-top: 0.5rem;
+  }
+  
+  .gap-3 {
+    gap: 0.5rem;
+  }
+  
+  .gap-2 {
+    gap: 0.375rem;
+  }
+}
+
+/* 반응형 간격 조정 - 태블릿 */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .space-y-4 > * + * {
+    margin-top: 0.875rem;
+  }
+  
+  .space-y-3 > * + * {
+    margin-top: 0.625rem;
+  }
+}
+
+/* 반응형 간격 조정 - 대형 화면 */
+@media (min-width: 1440px) {
+  .space-y-4 > * + * {
+    margin-top: 1.25rem;
+  }
+  
+  .space-y-3 > * + * {
+    margin-top: 1rem;
+  }
+  
+  .gap-3 {
+    gap: 1rem;
+  }
+  
+  .gap-2 {
+    gap: 0.75rem;
+  }
+}
+
+/* 플렉스 유틸리티 */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.items-start {
+  align-items: flex-start;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+/* 반응형 플렉스 */
+@media (min-width: 640px) {
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+  
+  .sm\:justify-between {
+    justify-content: space-between;
+  }
+  
+  .sm\:items-center {
+    align-items: center;
+  }
+}
+
+/* 접근성 개선 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* 포커스 스타일 */
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* 모바일 접근성 개선 */
+@media (max-width: 768px) {
+  /* 포커스 스타일 강화 */
+  button:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
+  }
+  
+  /* 터치 타겟 크기 보장 */
+  button,
+  input[type="checkbox"],
+  input[type="date"],
+  .completion-checkbox-label {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  /* 스크린 리더 지원 개선 */
+  .course-card-title {
+    font-size: 1.125rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* 모바일에서 텍스트 가독성 개선 */
+  .course-card-date-label {
+    font-weight: 600;
+    color: var(--foreground);
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* 고대비 모드에서 모바일 최적화 */
+@media (prefers-contrast: high) and (max-width: 768px) {
+  .course-card {
+    border-width: 3px;
+  }
+  
+  .completion-checkbox-label {
+    border: 2px solid transparent;
+    border-radius: 0.25rem;
+  }
+  
+  .completion-checkbox:focus + .checkbox-custom {
+    outline: 4px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+/* 체크박스 스타일 개선 */
+input[type="checkbox"] {
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+input[type="checkbox"]:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 640px) {
+  .app-header {
+    padding: 1rem 0;
+  }
+  
+  .app-main {
+    padding: 1rem 0;
+  }
+  
+  .app-footer {
+    padding: 1rem 0;
+  }
+  
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: 1rem;
+  }
+  
+  .container {
+    padding: 0 0.75rem;
+  }
+  
+  /* 모바일 터치 최적화 */
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  .card-header button {
+    padding: 0.75rem;
+    margin: -0.75rem;
+    min-height: 44px; /* 터치 친화적 최소 높이 */
+  }
+  
+  /* 모바일에서 텍스트 크기 조정 */
+  .text-responsive-xl {
+    font-size: 1.75rem;
+    line-height: 2rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1.375rem;
+    line-height: 1.75rem;
+  }
+  
+  /* 모바일 스크롤 개선 */
+  .table-responsive {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  
+  .table-responsive::-webkit-scrollbar {
+    height: 4px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-track {
+    background: var(--muted);
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+  }
+}
+
+/* 추가 반응형 개선 */
+@media (min-width: 1024px) {
+  .app-header {
+    padding: 2rem 0;
+  }
+  
+  .app-main {
+    padding: 2.5rem 0;
+  }
+  
+  .card-header,
+  .card-content {
+    padding: 2rem;
+  }
+}
+
+/* 초소형 모바일 기기 최적화 (320px 이하) */
+@media (max-width: 320px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: 0.75rem;
+  }
+  
+  .text-responsive-xl {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  
+  .progress-bar-large {
+    height: 10px;
+  }
+  
+  .progress-bar-medium {
+    height: 6px;
+  }
+}
+
+/* 태블릿 세로 모드 최적화 */
+@media (min-width: 641px) and (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+  
+  .card-header,
+  .card-content {
+    padding: 1.25rem;
+  }
+  
+  .app-header {
+    padding: 1.25rem 0;
+  }
+  
+  .app-main {
+    padding: 1.5rem 0;
+  }
+}
+
+/* 태블릿 가로 모드 최적화 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    max-width: 900px;
+  }
+  
+  .card-header,
+  .card-content {
+    padding: 1.5rem;
+  }
+}
+
+/* 대형 화면 최적화 */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+  }
+  
+  .card-header,
+  .card-content {
+    padding: 2.5rem;
+  }
+  
+  .text-responsive-xl {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+}
+
+/* 레이아웃 안정성 개선 */
+.app-layout {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* 카드 호버 효과 (데스크톱에서만) */
+@media (min-width: 768px) {
+  .card {
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transform: translateY(-1px);
+  }
+}
+
+/* 접근성 개선 - 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  .card {
+    border-width: 2px;
+  }
+  
+  .progress-bar {
+    border: 1px solid var(--foreground);
+  }
+  
+  .progress-fill {
+    border: 1px solid var(--background);
+  }
+}
+
+/* 애니메이션 감소 설정 지원 */
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill,
+  .card {
+    transition: none;
+  }
+}
+
+/* 인쇄 스타일 */
+@media print {
+  .app-header,
+  .app-footer {
+    display: none;
+  }
+  
+  .app-layout {
+    min-height: auto;
+  }
+  
+  .card {
+    box-shadow: none;
+    border: 1px solid #000;
+    break-inside: avoid;
+  }
+  
+  .progress-bar {
+    border: 1px solid #000;
+  }
+}
+/* DatePicker 컴포넌트 스타일 */
+.date-picker-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.date-picker-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  line-height: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required-indicator {
+  color: var(--error);
+  font-weight: bold;
+}
+
+.date-picker-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.date-picker-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  background-color: var(--input);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.date-picker-input:hover:not(:disabled) {
+  border-color: var(--primary);
+}
+
+.date-picker-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.date-picker-input.error {
+  border-color: var(--error);
+}
+
+.date-picker-input.error:focus {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.date-picker-input.disabled {
+  background-color: var(--muted);
+  color: var(--muted-foreground);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.date-picker-input:disabled:hover {
+  border-color: var(--border);
+}
+
+.date-picker-error {
+  font-size: 0.75rem;
+  color: var(--error);
+  line-height: 1rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.date-picker-error::before {
+  content: '⚠';
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+/* 반응형 DatePicker 스타일 */
+@media (max-width: 640px) {
+  .date-picker-input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    min-height: 44px; /* 터치 친화적인 최소 높이 */
+  }
+  
+  .date-picker-label {
+    font-size: 1rem;
+  }
+  
+  .date-picker-error {
+    font-size: 0.875rem;
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .date-picker-input {
+    background-color: var(--input);
+    border-color: var(--border);
+    color: var(--foreground);
+  }
+  
+  .date-picker-input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.8;
+  }
+  
+  .date-picker-input::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
+  }
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  .date-picker-input {
+    border-width: 2px;
+  }
+  
+  .date-picker-input:focus {
+    border-width: 3px;
+  }
+  
+  .date-picker-error {
+    font-weight: bold;
+  }
+}
+
+/* 애니메이션 감소 설정 지원 */
+@media (prefers-reduced-motion: reduce) {
+  .date-picker-input {
+    transition: none;
+  }
+}
+
+/* 인쇄 스타일 */
+@media print {
+  .date-picker-input {
+    border: 1px solid #000;
+    background: white;
+    color: black;
+  }
+  
+  .date-picker-error {
+    color: #000;
+  }
+  
+  .date-picker-error::before {
+    content: '[오류] ';
+  }
+}
+
+/* 브라우저별 날짜 입력 스타일 개선 */
+.date-picker-input::-webkit-datetime-edit {
+  padding: 0;
+}
+
+.date-picker-input::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+.date-picker-input::-webkit-datetime-edit-text {
+  color: var(--muted-foreground);
+  padding: 0 0.25rem;
+}
+
+.date-picker-input::-webkit-datetime-edit-month-field,
+.date-picker-input::-webkit-datetime-edit-day-field,
+.date-picker-input::-webkit-datetime-edit-year-field {
+  padding: 0 0.125rem;
+}
+
+.date-picker-input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-left: 0.5rem;
+  opacity: 0.6;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.date-picker-input::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Firefox 스타일 */
+.date-picker-input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/* Cours
+eTable 컴포넌트 스타일 */
+.course-table-container {
+  width: 100%;
+  position: relative;
+}
+
+/* Desktop Table Styles */
+.course-table-desktop {
+  display: block;
+}
+
+.course-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--background);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.course-table-header {
+  background: var(--muted);
+  color: var(--foreground);
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.course-name-header {
+  width: 40%;
+  min-width: 200px;
+}
+
+.course-date-header {
+  width: 20%;
+  min-width: 120px;
+  text-align: center;
+}
+
+.course-status-header {
+  width: 20%;
+  min-width: 100px;
+  text-align: center;
+}
+
+.course-table-row {
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.2s ease-in-out;
+}
+
+.course-table-row:hover {
+  background: var(--muted);
+}
+
+.course-table-row:last-child {
+  border-bottom: none;
+}
+
+.course-table-cell {
+  padding: 1rem;
+  vertical-align: middle;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.course-name-cell {
+  font-weight: 500;
+}
+
+.course-name-text {
+  display: block;
+  color: var(--foreground);
+  line-height: 1.4;
+}
+
+.course-date-cell {
+  text-align: center;
+}
+
+.date-cell-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.date-display {
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+.date-placeholder {
+  color: var(--muted-foreground);
+  font-style: italic;
+  font-size: 0.8125rem;
+}
+
+.course-status-cell {
+  text-align: center;
+}
+
+.status-cell-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.status-indicator {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-indicator.completed {
+  background: var(--success);
+  color: white;
+}
+
+.status-indicator.pending {
+  background: var(--warning);
+  color: white;
+}
+
+/* Mobile Card Styles */
+.course-table-mobile {
+  display: none;
+}
+
+.course-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.course-card {
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 모바일 카드 터치 효과 */
+@media (max-width: 768px) {
+  .course-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  .course-card {
+    touch-action: manipulation;
+  }
+}
+
+.course-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+  gap: 1rem;
+}
+
+.course-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--foreground);
+  line-height: 1.4;
+  margin: 0;
+  flex: 1;
+}
+
+.course-card-status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.course-card-status.completed {
+  background: var(--success);
+  color: white;
+}
+
+.course-card-status.pending {
+  background: var(--warning);
+  color: white;
+}
+
+.course-card-content {
+  border-top: 1px solid var(--border);
+  padding-top: 0.75rem;
+}
+
+.course-card-dates {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.course-card-date-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-card-date-label {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  font-weight: 500;
+}
+
+.course-card-date-value {
+  font-size: 0.875rem;
+  color: var(--foreground);
+  font-weight: 500;
+}
+
+/* Empty State */
+.course-table-empty {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.empty-state-content {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.empty-state-message {
+  color: var(--muted-foreground);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .course-table-desktop {
+    display: none;
+  }
+  
+  .course-table-mobile {
+    display: block;
+  }
+  
+  .course-card {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .course-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .course-card-status {
+    align-self: flex-end;
+  }
+  
+  .course-card-dates {
+    gap: 0.75rem;
+  }
+  
+  .course-card-date-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  /* 모바일 스크롤 표시기 개선 */
+  .course-cards-container {
+    padding-bottom: 1rem;
+  }
+  
+  /* 모바일에서 카드 간격 조정 */
+  .course-cards-container > .course-card:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/* 중간 크기 화면에서 테이블 최적화 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .course-table {
+    font-size: 0.8125rem;
+  }
+  
+  .course-table-header,
+  .course-table-cell {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  .course-name-header {
+    width: 35%;
+    min-width: 160px;
+  }
+  
+  .course-date-header {
+    width: 22.5%;
+    min-width: 100px;
+  }
+  
+  .course-status-header {
+    width: 20%;
+    min-width: 80px;
+  }
+}
+
+/* 가로 스크롤 테이블 개선 */
+@media (max-width: 1024px) {
+  .table-responsive {
+    border-radius: 0.5rem;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  
+  .table-responsive table {
+    margin: 0;
+  }
+  
+  .table-responsive::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-track {
+    background: var(--muted);
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+  }
+  
+  .table-responsive::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .course-table {
+    font-size: 0.8125rem;
+  }
+  
+  .course-table-header,
+  .course-table-cell {
+    padding: 0.75rem;
+  }
+  
+  .course-name-header {
+    width: 35%;
+    min-width: 180px;
+  }
+  
+  .course-date-header {
+    width: 22.5%;
+    min-width: 110px;
+  }
+  
+  .course-status-header {
+    width: 20%;
+    min-width: 90px;
+  }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1200px) {
+  .course-table-header,
+  .course-table-cell {
+    padding: 1.25rem;
+  }
+  
+  .course-table-header {
+    font-size: 1rem;
+  }
+  
+  .course-table-cell {
+    font-size: 1rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .course-table {
+    background: var(--background);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .course-table-header {
+    background: var(--muted);
+  }
+  
+  .course-table-row:hover {
+    background: var(--muted);
+  }
+  
+  .course-card {
+    background: var(--background);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .course-table,
+  .course-card {
+    border-width: 2px;
+  }
+  
+  .course-table-header {
+    border-bottom-width: 2px;
+  }
+  
+  .course-table-row {
+    border-bottom-width: 2px;
+  }
+  
+  .status-indicator {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .course-table-row {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .course-table-mobile {
+    display: none !important;
+  }
+  
+  .course-table-desktop {
+    display: block !important;
+  }
+  
+  .course-table {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+  
+  .course-table-header {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+  }
+  
+  .course-table-row:hover {
+    background: transparent !important;
+  }
+  
+  .status-indicator.completed {
+    background: #000 !important;
+    color: #fff !important;
+  }
+  
+  .status-indicator.pending {
+    background: #666 !important;
+    color: #fff !important;
+  }
+}
+
+/* Accessibility improvements */
+.course-table-header:focus,
+.course-table-cell:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: -2px;
+}
+
+/* Touch-friendly improvements for mobile */
+@media (max-width: 768px) {
+  .course-card {
+    min-height: 44px; /* Minimum touch target size */
+    touch-action: manipulation;
+  }
+  
+  .course-card-status {
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 터치 영역 확대 */
+  .completion-checkbox-label {
+    min-height: 44px;
+    padding: 0.5rem;
+    margin: -0.5rem;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .completion-checkbox-label:active {
+    background-color: var(--muted);
+  }
+  
+  /* 모바일 날짜 입력 최적화 */
+  .date-picker-input {
+    min-height: 44px;
+    font-size: 16px; /* iOS 줌 방지 */
+    padding: 0.75rem;
+  }
+  
+  /* 모바일 버튼 최적화 */
+  button, .card-header button {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+  
+  /* 모바일 포커스 스타일 개선 */
+  button:focus,
+  input:focus,
+  .completion-checkbox:focus + .checkbox-custom {
+    outline: 3px solid var(--ring);
+    outline-offset: 2px;
+  }
+  
+  /* 모바일 호버 효과 제거 (터치 기기에서 불필요) */
+  .course-table-row:hover,
+  .card:hover,
+  .progress-container:hover .progress-fill {
+    background: inherit;
+    box-shadow: inherit;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Loading state (for future use) */
+.course-table-loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.course-table-loading .course-table-row {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}/* C
+ourseRow 컴포넌트 스타일 */
+.course-date-picker {
+  width: 100%;
+  max-width: 160px;
+}
+
+.course-date-picker .date-picker-input {
+  padding: 0.375rem 0.5rem;
+  font-size: 0.8125rem;
+  border-radius: 0.25rem;
+}
+
+/* 체크박스 스타일 개선 */
+.completion-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.completion-checkbox {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkbox-custom {
+  position: relative;
+  height: 18px;
+  width: 18px;
+  background-color: var(--input);
+  border: 2px solid var(--border);
+  border-radius: 0.25rem;
+  transition: all 0.2s ease-in-out;
+  flex-shrink: 0;
+}
+
+.completion-checkbox:checked + .checkbox-custom {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.completion-checkbox:checked + .checkbox-custom::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.completion-checkbox:focus + .checkbox-custom {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.completion-checkbox:hover + .checkbox-custom {
+  border-color: var(--primary);
+}
+
+.status-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.status-text.completed {
+  color: var(--success);
+}
+
+.status-text.pending {
+  color: var(--muted-foreground);
+}
+
+/* 에러 행 스타일 */
+.course-error-row {
+  background-color: rgba(239, 68, 68, 0.05);
+}
+
+.course-error-cell {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.course-error-message {
+  color: var(--error);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.course-error-message::before {
+  content: '⚠';
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* 모바일 카드 체크박스 스타일 */
+.course-card-completion {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.course-card-date-picker {
+  width: 100%;
+  max-width: none;
+}
+
+.course-card-date-picker .date-picker-input {
+  padding: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.course-card-error {
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--error);
+  border-radius: 0.25rem;
+  color: var(--error);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+  .course-card-date-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .course-card-date-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--foreground);
+  }
+  
+  .course-card-completion {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+  
+  .completion-checkbox-label {
+    font-size: 0.875rem;
+  }
+  
+  .checkbox-custom {
+    height: 20px;
+    width: 20px;
+  }
+  
+  .completion-checkbox:checked + .checkbox-custom::after {
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+  }
+}
+
+/* 태블릿 최적화 */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .course-date-picker {
+    max-width: 160px;
+  }
+  
+  .course-date-picker .date-picker-input {
+    padding: 0.25rem 0.375rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* 다크 모드 지원 */
+@media (prefers-color-scheme: dark) {
+  .course-error-row {
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+  
+  .course-card-error {
+    background-color: rgba(239, 68, 68, 0.15);
+  }
+  
+  .checkbox-custom {
+    background-color: var(--input);
+    border-color: var(--border);
+  }
+  
+  .completion-checkbox:checked + .checkbox-custom {
+    background-color: var(--primary);
+    border-color: var(--primary);
+  }
+}
+
+/* 고대비 모드 지원 */
+@media (prefers-contrast: high) {
+  .checkbox-custom {
+    border-width: 3px;
+  }
+  
+  .completion-checkbox:checked + .checkbox-custom::after {
+    border-width: 0 3px 3px 0;
+  }
+  
+  .course-error-message {
+    font-weight: bold;
+  }
+}
+
+/* 애니메이션 감소 설정 지원 */
+@media (prefers-reduced-motion: reduce) {
+  .checkbox-custom,
+  .status-text {
+    transition: none;
+  }
+}
+
+/* 인쇄 스타일 */
+@media print {
+  .course-error-row,
+  .course-card-error {
+    background: white !important;
+    border: 1px solid #000 !important;
+  }
+  
+  .course-error-message {
+    color: #000 !important;
+  }
+  
+  .course-error-message::before {
+    content: '[오류] ';
+  }
+  
+  .checkbox-custom {
+    border: 2px solid #000 !important;
+    background: white !important;
+  }
+  
+  .completion-checkbox:checked + .checkbox-custom {
+    background: #000 !important;
+  }
+  
+  .completion-checkbox:checked + .checkbox-custom::after {
+    border-color: white !important;
+  }
+  
+  .status-text.completed {
+    color: #000 !important;
+  }
+  
+  .status-text.pending {
+    color: #666 !important;
+  }
+}
+
+/* 접근성 개선 */
+.completion-checkbox-label:focus-within .checkbox-custom {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* 터치 친화적 개선 */
+@media (max-width: 768px) {
+  .completion-checkbox-label {
+    min-height: 44px;
+    padding: 0.5rem 0;
+  }
+  
+  .course-date-picker .date-picker-input {
+    min-height: 44px;
+  }
+}
+/* ErrorM
+essage 컴포넌트 스타일 */
+.error-message {
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+}
+
+.error-message-block {
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid;
+}
+
+.error-message-inline {
+  padding: 0.375rem 0.5rem;
+  margin: 0.25rem 0;
+  border: 1px solid;
+  display: inline-block;
+}
+
+.error-message-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.error-message-icon {
+  flex-shrink: 0;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.error-message-text {
+  flex: 1;
+  line-height: 1.4;
+}
+
+.error-message-dismiss {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.125rem;
+  border-radius: 0.125rem;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.error-message-dismiss:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.error-message-dismiss:focus {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Error type styles */
+.error-message-error {
+  background-color: rgba(239, 68, 68, 0.1);
+  border-color: var(--error);
+  color: var(--error);
+}
+
+.error-message-warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  border-color: var(--warning);
+  color: var(--warning);
+}
+
+.error-message-info {
+  background-color: rgba(59, 130, 246, 0.1);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .error-message-error {
+    background-color: rgba(239, 68, 68, 0.15);
+  }
+  
+  .error-message-warning {
+    background-color: rgba(245, 158, 11, 0.15);
+  }
+  
+  .error-message-info {
+    background-color: rgba(59, 130, 246, 0.15);
+  }
+  
+  .error-message-dismiss:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .error-message {
+    border-width: 2px;
+    font-weight: 600;
+  }
+  
+  .error-message-icon {
+    font-weight: bold;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .error-message-dismiss {
+    transition: none;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .error-message {
+    font-size: 0.8125rem;
+  }
+  
+  .error-message-block {
+    padding: 0.5rem;
+    margin: 0.375rem 0;
+  }
+  
+  .error-message-content {
+    gap: 0.375rem;
+  }
+  
+  .error-message-dismiss {
+    font-size: 1.125rem;
+    padding: 0.25rem;
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Print styles */
+@media print {
+  .error-message {
+    background: white !important;
+    border: 1px solid #000 !important;
+    color: #000 !important;
+  }
+  
+  .error-message-dismiss {
+    display: none !important;
+  }
+  
+  .error-message-icon {
+    color: #000 !important;
+  }
+}/* 모바일 가
+로 모드 최적화 */
+@media (max-width: 768px) and (orientation: landscape) {
+  .app-header {
+    padding: 0.75rem 0;
+  }
+  
+  .app-main {
+    padding: 0.75rem 0;
+  }
+  
+  .card-header,
+  .card-content {
+    padding: 0.75rem;
+  }
+  
+  .text-responsive-xl {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  
+  /* 가로 모드에서 카드 간격 줄이기 */
+  .course-cards-container {
+    gap: 0.75rem;
+  }
+  
+  .course-card {
+    padding: 0.75rem;
+  }
+  
+  .course-card-header {
+    margin-bottom: 0.5rem;
+  }
+  
+  .course-card-dates {
+    gap: 0.5rem;
+  }
+}
+
+/* 폴더블 기기 지원 */
+@media (max-width: 768px) and (min-aspect-ratio: 2/1) {
+  .container {
+    max-width: 90%;
+  }
+  
+  .course-cards-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  .course-card {
+    margin-bottom: 0;
+  }
+}
+
+/* 매우 넓은 모바일 화면 (가로 모드 태블릿) */
+@media (min-width: 769px) and (max-width: 1024px) and (orientation: landscape) {
+  .course-table-desktop {
+    display: block;
+  }
+  
+  .course-table-mobile {
+    display: none;
+  }
+  
+  .course-table {
+    font-size: 0.875rem;
+  }
+  
+  .course-table-header,
+  .course-table-cell {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+/* 스마트워치 및 초소형 기기 지원 */
+@media (max-width: 280px) {
+  .container {
+    padding: 0 0.25rem;
+  }
+  
+  .card-header,
+  .card-content {
+    padding: 0.5rem;
+  }
+  
+  .text-responsive-xl {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+  
+  .text-responsive-lg {
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+  }
+  
+  .course-card {
+    padding: 0.5rem;
+  }
+  
+  .course-card-title {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  
+  .date-picker-input {
+    padding: 0.5rem;
+    font-size: 14px;
+  }
+}
+
+/* 프린트 시 모바일 최적화 */
+@media print {
+  .course-table-mobile {
+    display: none !important;
+  }
+  
+  .course-table-desktop {
+    display: block !important;
+  }
+  
+  .app-layout {
+    font-size: 12px;
+  }
+  
+  .course-table {
+    font-size: 11px;
+  }
+  
+  .course-table-header,
+  .course-table-cell {
+    padding: 0.25rem;
+  }
+}
+
+/* 다크 모드에서 모바일 최적화 */
+@media (prefers-color-scheme: dark) and (max-width: 768px) {
+  .course-card {
+    background: var(--background);
+    border-color: var(--border);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.4), 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  }
+  
+  .completion-checkbox-label:active {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .date-picker-input {
+    background-color: var(--input);
+    border-color: var(--border);
+  }
+}
+
+/* 시스템 폰트 크기 설정 존중 */
+@media (prefers-reduced-data: reduce) {
+  .progress-fill::after {
+    animation: none;
+  }
+  
+  .card {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* 배터리 절약 모드 지원 */
+@media (prefers-reduced-motion: reduce) {
+  .course-card:active {
+    transform: none;
+  }
+  
+  .progress-fill,
+  .card,
+  .completion-checkbox-label {
+    transition: none;
+  }
+  
+  .progress-fill::after {
+    animation: none;
+  }
+}
+
+/* 고해상도 디스플레이 최적화 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .course-table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .checkbox-custom {
+    border-width: 1px;
+  }
+  
+  .completion-checkbox:checked + .checkbox-custom::after {
+    border-width: 0 1px 1px 0;
+  }
 }
