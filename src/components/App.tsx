@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import CurriculumDashboard from './CurriculumDashboard';
 
 /**
@@ -18,10 +19,16 @@ const App: React.FC = () => {
                 커리큘럼 진행률 관리
               </h1>
               <p className="text-responsive-base text-muted-foreground">
-                7주차 개발 커리큘럼의 진행 상황을 체계적으로 추적하고 관리하세요
+                10주차 개발 커리큘럼의 진행 상황을 체계적으로 추적하고 관리하세요
               </p>
             </div>
-            <div className="flex-shrink-0 sm:text-right">
+            <div className="flex-shrink-0 flex flex-col sm:items-end gap-2">
+              <Link 
+                href="/curriculum"
+                className="inline-flex items-center px-3 py-1.5 text-sm bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
+              >
+                📋 커리큘럼 개요
+              </Link>
               <p className="text-xs text-muted-foreground">
                 v1.0
               </p>
